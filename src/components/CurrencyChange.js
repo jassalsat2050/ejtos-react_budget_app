@@ -2,12 +2,12 @@ import React, { useState,useContext,useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const CurrencyChange = () => {
-    const [currency, setCurrency] = useState('');
+    const [currency, setCurrency] = useState('£');
     const { dispatch } = useContext(AppContext);
 
 const handleChange = (event) => {
     setCurrency(event.target.value);
-    changeCurrency()
+    changeCurrency();
   };
 
   const changeCurrency = () => {
@@ -17,7 +17,10 @@ const handleChange = (event) => {
     });
   }
 
-useEffect(() => {console.log(currency);}, [currency] )
+useEffect(() => {
+    console.log(currency);
+    changeCurrency();
+});
 
 return (
     <div className='alert alert-primary' style={{paddingRight:'10px'}}>
@@ -25,9 +28,8 @@ return (
             Change Currency:
         </label>
         <select id="inputGroupSelect02" onChange={handleChange}>
-            <option defaultValue>Currency</option>
             <option value="$" name="dollar">$ Dollar</option>
-            <option value="£" name="pound">£ Pound</option>
+            <option selected value="£" name="pound">£ Pound</option>
             <option value="€" name="euro">€ Euro</option>
             <option value="₹" name="ruppee">₹ Ruppee</option>
         </select>
